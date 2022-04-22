@@ -4,4 +4,10 @@
 
 ### Account
 - [x] create user
-- [ ] authenticated
+- [x] authenticated
+
+### Financial
+- [ ] account
+- [ ] category
+- [ ] creditCard
+- [ ] operation
