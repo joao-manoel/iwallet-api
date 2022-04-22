@@ -7,7 +7,11 @@
 - [x] authenticated
 
 ### Financial
-- [ ] account
+- [ ] wallet
+  - [x] create
+  - [ ] delete
+  - [ ] update name | currency
+
 - [ ] category
 - [ ] creditCard
 - [ ] operation
