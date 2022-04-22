@@ -19,20 +19,20 @@ model User {
   deleted_at DateTime?
 
   Operation  Operation[]
-  Account    Account[]
+  Wallet     Wallet[]
   Category   Category[]
   CreditCard CreditCard[]
 
   @@map("users")
 }
 
-model Account {
+model Wallet {
   id       String   @id
   name     String
-  currency Currency @default(BRL)
+  currency Currency
 
-  user_id String
   user    User   @relation(fields: [user_id], references: [id])
+  user_id String
 
   created_at DateTime  @default(now())
   updated_at DateTime  @default(now()) @updatedAt
@@ -41,7 +41,7 @@ model Account {
   CreditCard CreditCard[]
   Operation  Operation[]
 
-  @@map("accounts")
+  @@map("wallets")
 }
 
 model CreditCard {
@@ -50,8 +50,8 @@ model CreditCard {
   brand CreditCardBrand
   limit Float
 
-  account_id String
-  account    Account @relation(fields: [account_id], references: [id])
+  wallet_id String
+  wallet    Wallet @relation(fields: [wallet_id], references: [id])
 
   user_id String
   user    User   @relation(fields: [user_id], references: [id])
@@ -91,8 +91,8 @@ model Operation {
   user_id String
   user    User   @relation(fields: [user_id], references: [id])
 
-  account_id String
-  account    Account @relation(fields: [account_id], references: [id])
+  wallet_id String
+  wallet    Wallet @relation(fields: [wallet_id], references: [id])
 
   category_id String
   category    Category @relation(fields: [category_id], references: [id])

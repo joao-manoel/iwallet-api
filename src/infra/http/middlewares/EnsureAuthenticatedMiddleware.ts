@@ -7,6 +7,7 @@ import { AccessDeniedError } from '../errors/AccessDeniedError'
 
 type EnsureAuthenticatedMiddlewareRequest = {
   accessToken: string
+  authorization: string
 }
 
 type DecodedJwt = {
@@ -20,11 +21,13 @@ export class EnsureAuthenticatedMiddleware implements Middleware {
     request: EnsureAuthenticatedMiddlewareRequest
   ): Promise<HttpResponse> {
     try {
-      const { accessToken } = request
+      const { authorization } = request
 
-      if (accessToken) {
+      const acessToken = authorization.split(' ')[1]
+
+      if (acessToken) {
         try {
-          const decoded = decode(accessToken) as DecodedJwt
+          const decoded = decode(acessToken) as DecodedJwt
 
           return ok({ userId: decoded.sub })
         } catch (err) {

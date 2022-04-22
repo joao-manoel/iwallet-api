@@ -1,6 +1,7 @@
 import { Either, left, right } from '@core/logic/Either';
 
-import { InvalidAccountFinancialNameError } from './errors/InvalidAccountFinancialNameError';
+import { InvalidWalletNameError } from './errors/InvalidWalletNameError';
+
 
 export class Name {
   private readonly name: string
@@ -21,9 +22,9 @@ export class Name {
     return true
   }
 
-  static create(name: string): Either<InvalidAccountFinancialNameError, Name>{
+  static create(name: string): Either<InvalidWalletNameError, Name>{
     if(!this.validate(name)){
-      return left(new InvalidAccountFinancialNameError(name))
+      return left(new InvalidWalletNameError(name))
     }
 
     return right(new Name(name))
