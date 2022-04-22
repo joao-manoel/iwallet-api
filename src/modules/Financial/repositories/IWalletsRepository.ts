@@ -1,5 +1,6 @@
 import { Wallet } from './../domain/wallet/wallet';
 
-export interface IWalletRepository {
+export interface IWalletsRepository {
   create(wallet: Wallet): Promise<void>
+  findByNameWithUser(name: string, user_id: string): Promise<Wallet>
 }

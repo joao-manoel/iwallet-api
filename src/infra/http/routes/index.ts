@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { walletsRouter } from './financial/wallets.routes'
-import { sessionsRouter } from './sessions.routes'
-import { usersRouter } from './users.routes'
+import { sessionsRouter } from './user/sessions.routes'
+import { usersRouter } from './user/users.routes'
 
 const router = Router()
 

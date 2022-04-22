@@ -9,6 +9,6 @@ const walletsRouter = express.Router()
 
 walletsRouter.use(adaptMiddleware(makeEnsureAuthenticatedMiddleware()))
 
-walletsRouter.post('/accounts', adaptRoute(makeCreateWalletController()))
+walletsRouter.post('/wallets', adaptRoute(makeCreateWalletController()))
 
-export {walletsRouter}
+export { walletsRouter }
