@@ -2,7 +2,7 @@
 import express from 'express'
 
 import { adaptRoute } from '@core/infra/adapters/ExpressRouteAdapter'
-import { makeRegisterUserController } from '../factories/controllers/RegisterUserControllerFactory'
+import { makeRegisterUserController } from '@infra/http/factories/controllers/RegisterUserControllerFactory'
 
 const usersRouter = express.Router()
 

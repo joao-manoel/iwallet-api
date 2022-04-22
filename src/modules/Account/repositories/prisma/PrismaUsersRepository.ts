@@ -26,6 +26,21 @@ export class PrismaUsersRepository implements IUsersRepository{
     return UserMapper.toDomain(user)
   }
 
+  async findById(id: string): Promise<User> {
+    const user = await prisma.user.findFirst({
+      where: {
+        id,
+        deleted_at: null
+      }
+    })
+
+    if (!user) {
+      return null
+    }
+
+    return UserMapper.toDomain(user)
+  }
+
   async save(user: User): Promise<void> {
     throw new Error('Method not implemented.');
   }
