@@ -28,7 +28,7 @@ export class Currency {
 
   static create(currency: ValidCurrencyTypes): Either<InvalidCurrencyError, Currency>{
     if(!this.validate(currency)){
-      return left(new InvalidCurrencyError(currency))
+      return left(new InvalidCurrencyError())
     }
 
     return right(new Currency(currency))

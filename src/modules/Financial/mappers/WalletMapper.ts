@@ -1,11 +1,11 @@
 import { Wallet } from './../domain/wallet/wallet';
-import { Account as PersistenceAccount} from '@prisma/client'
+import { Wallet as PersistenceWallet} from '@prisma/client'
 
 import { Currency } from '../domain/wallet/currency';
 import { Name } from '../domain/wallet/name';
 
 export class WalletMapper {
-  static toDomain(raw: PersistenceAccount): Wallet {
+  static toDomain(raw: PersistenceWallet): Wallet {
     const nameOrError = Name.create(raw.name)
     const currencyOrError = Currency.create(raw.currency)
 
@@ -17,7 +17,7 @@ export class WalletMapper {
       throw new Error('Currency value is invalid.')
     }
 
-    const accountOrError = Wallet.create(
+    const walletOrError = Wallet.create(
       {
         name: nameOrError.value,
         currency: currencyOrError.value,
@@ -26,8 +26,8 @@ export class WalletMapper {
       raw.id
     )
 
-    if(accountOrError.isRight()){
-      return accountOrError.value
+    if(walletOrError.isRight()){
+      return walletOrError.value
     }
 
     return null
