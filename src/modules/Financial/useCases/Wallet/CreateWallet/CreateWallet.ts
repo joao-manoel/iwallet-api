@@ -1,15 +1,15 @@
-import { InvalidWalletNameWithUser } from './errors/InvalidWalletNameWithUser';
 import { Either, left, right } from '@core/logic/Either';
 import { IUsersRepository } from '@modules/Account/repositories/IUsersRepository';
 import { IWalletsRepository } from "@modules/Financial/repositories/IWalletsRepository";
 import { Name } from '@modules/Financial/domain/wallet/name';
 
-import { Wallet } from './../../domain/wallet/wallet';
-import { Currency } from './../../domain/wallet/currency';
-import { ValidCurrencyTypes } from '../../domain/wallet/currency';
-import { InvalidCurrencyError } from './../../domain/wallet/errors/InvalidCurrencyError';
-import { InvalidWalletNameError } from './../../domain/wallet/errors/InvalidWalletNameError';
-import { InvalidUserError } from './errors/InvalidUserError';
+import { Wallet } from '../../../domain/wallet/wallet';
+import { Currency } from '../../../domain/wallet/currency';
+import { ValidCurrencyTypes } from '../../../domain/wallet/currency';
+import { InvalidCurrencyError } from '../../../domain/wallet/errors/InvalidCurrencyError';
+import { InvalidWalletNameError } from '../../../domain/wallet/errors/InvalidWalletNameError';
+import { InvalidUserError } from '@modules/Account/domain/user/errors/InvalidUserError';
+import { InvalidWalletNameWithUser } from '../errors/InvalidWalletNameWithUser';
 
 type CreateWalletRequest = {
   name: string
@@ -33,11 +33,11 @@ export class CreateWallet{
     const currencyOrError = Currency.create(currency)
 
     if(nameOrError.isLeft()){
-      return left(nameOrError.value)
+      return left(new InvalidWalletNameError(name))
     }
 
     if(currencyOrError.isLeft()){
-      return left(currencyOrError.value)
+      return left(new InvalidCurrencyError())
     }
 
     const userExists = await this.usersRepository.findById(userId)

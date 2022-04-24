@@ -8,7 +8,7 @@ const router = Router()
 router.use('/users', usersRouter)
 router.use('/sessions', sessionsRouter)
 
-router.use('/financial', walletsRouter)
+router.use('/wallets', walletsRouter)
 
 
 export { router }

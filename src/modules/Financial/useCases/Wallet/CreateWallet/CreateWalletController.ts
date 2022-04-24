@@ -7,16 +7,22 @@ import {
   conflict,
   notFound } from '@core/infra/HttpResponse';
 
-import { InvalidUserError } from './errors/InvalidUserError';
-import { InvalidWalletNameWithUser } from './errors/InvalidWalletNameWithUser';
-import { ValidCurrencyTypes } from './../../domain/wallet/currency';
+import { InvalidWalletNameWithUser } from '../errors/InvalidWalletNameWithUser';
+import { ValidCurrencyTypes } from '../../../domain/wallet/currency';
 import { CreateWallet } from './CreateWallet';
+import { InvalidUserError } from '@modules/Account/domain/user/errors/InvalidUserError';
+import { InvalidCurrencyError } from '@modules/Financial/domain/wallet/errors/InvalidCurrencyError';
 
 
 type CreateWalletControllerRequest = {
   name: string
   currency: string
   userId: string
+}
+
+export const currencyTypesMap: Record<string, ValidCurrencyTypes> = {
+  BRL: 'BRL',
+  USD: 'USD'
 }
 
 export class CreateWalletController implements Controller {
@@ -27,13 +33,7 @@ export class CreateWalletController implements Controller {
 
     try{
 
-      const currencyTypesMap: Record<string, ValidCurrencyTypes> = {
-        BRL: 'BRL',
-        USD: 'USD'
-      }
-
       const currencyType = currencyTypesMap[currency]
-
 
       const result = await this.createWallet.execute({
         name,
@@ -48,6 +48,8 @@ export class CreateWalletController implements Controller {
           case InvalidUserError:
             return notFound(error)
           case InvalidWalletNameWithUser:
+            return conflict(error)
+          case InvalidCurrencyError:
             return conflict(error)
           default: clientError(error)
         }

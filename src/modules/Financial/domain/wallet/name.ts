@@ -1,3 +1,4 @@
+
 import { Either, left, right } from '@core/logic/Either';
 
 import { InvalidWalletNameError } from './errors/InvalidWalletNameError';

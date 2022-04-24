@@ -26,6 +26,14 @@ export class Wallet extends Entity<IWalletProps>{
     return this.props.userId
   }
 
+  set name(name: Name){
+    this.props.name = name
+  }
+
+  set currency(currency: Currency){
+    this.props.currency = currency
+  }
+
   private constructor(props: IWalletProps, id?: string){
     super(props, id)
   }

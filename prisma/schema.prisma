@@ -31,7 +31,7 @@ model Wallet {
   name     String
   currency Currency
 
-  user    User   @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id String
 
   created_at DateTime  @default(now())
@@ -51,10 +51,10 @@ model CreditCard {
   limit Float
 
   wallet_id String
-  wallet    Wallet @relation(fields: [wallet_id], references: [id])
+  wallet    Wallet @relation(fields: [wallet_id], references: [id], onDelete: Cascade)
 
   user_id String
-  user    User   @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   created_at DateTime  @default(now())
   updated_at DateTime  @default(now()) @updatedAt
@@ -71,7 +71,7 @@ model Category {
   type TransactionType
 
   user_id String
-  user    User   @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   created_at DateTime  @default(now())
   updated_at DateTime  @default(now()) @updatedAt
@@ -89,10 +89,10 @@ model Operation {
   paid_at DateTime?       @default(now())
 
   user_id String
-  user    User   @relation(fields: [user_id], references: [id])
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   wallet_id String
-  wallet    Wallet @relation(fields: [wallet_id], references: [id])
+  wallet    Wallet @relation(fields: [wallet_id], references: [id], onDelete: Cascade)
 
   category_id String
   category    Category @relation(fields: [category_id], references: [id])
