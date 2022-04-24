@@ -30,6 +30,7 @@ model Wallet {
   id       String   @id
   name     String
   currency Currency
+  //is_default Boolean
 
   user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id String
