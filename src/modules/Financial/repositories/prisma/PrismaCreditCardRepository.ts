@@ -45,4 +45,17 @@ export class PrismaCreditCardRepository implements ICreditCardRepository{
     return CreditCardMapper.toDomain(creditCard)
   }
 
+  async findByNameWithUser(name: string, user_id: string): Promise<CreditCard> {
+    const creditCard = await prisma.creditCard.findFirst({
+      where: {
+        name,
+        user_id
+      }
+    })
+
+    if(!creditCard) return null
+
+    return CreditCardMapper.toDomain(creditCard)
+  }
+
 }

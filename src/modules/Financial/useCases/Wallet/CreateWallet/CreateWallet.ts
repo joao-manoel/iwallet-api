@@ -10,6 +10,7 @@ import { InvalidCurrencyError } from '../../../domain/wallet/errors/InvalidCurre
 import { InvalidWalletNameError } from '../../../domain/wallet/errors/InvalidWalletNameError';
 import { InvalidUserError } from '@modules/Account/domain/user/errors/InvalidUserError';
 import { InvalidWalletNameWithUser } from '../errors/InvalidWalletNameWithUser';
+import { InvalidWalletCreateError } from '../errors/InvalidWalletCreateError';
 
 type CreateWalletRequest = {
   name: string
@@ -20,6 +21,7 @@ type CreateWalletRequest = {
 type CreateWalletResponse = Either<
   | InvalidWalletNameError
   | InvalidCurrencyError
+  | InvalidWalletCreateError
   | InvalidWalletNameWithUser, Wallet>
 
 export class CreateWallet{
@@ -59,7 +61,7 @@ export class CreateWallet{
     })
 
     if(walletOrError.isLeft()){
-      return left(walletOrError.value)
+      return left(new InvalidWalletCreateError())
     }
 
     const wallet = walletOrError.value

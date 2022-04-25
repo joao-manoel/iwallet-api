@@ -12,6 +12,7 @@ import { ValidCurrencyTypes } from '../../../domain/wallet/currency';
 import { CreateWallet } from './CreateWallet';
 import { InvalidUserError } from '@modules/Account/domain/user/errors/InvalidUserError';
 import { InvalidCurrencyError } from '@modules/Financial/domain/wallet/errors/InvalidCurrencyError';
+import { InvalidWalletCreateError } from '../errors/InvalidWalletCreateError';
 
 
 type CreateWalletControllerRequest = {
@@ -48,9 +49,10 @@ export class CreateWalletController implements Controller {
           case InvalidUserError:
             return notFound(error)
           case InvalidWalletNameWithUser:
-            return conflict(error)
           case InvalidCurrencyError:
             return conflict(error)
+          case InvalidWalletCreateError:
+            return fail(error)
           default: clientError(error)
         }
       } else{
