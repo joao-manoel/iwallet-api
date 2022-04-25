@@ -6,7 +6,7 @@ import { InvalidWalletNameError } from "@modules/Financial/domain/wallet/errors/
 import { Name } from "@modules/Financial/domain/wallet/name"
 import { IWalletsRepository } from "@modules/Financial/repositories/IWalletsRepository"
 import { currencyTypesMap } from "../CreateWallet/CreateWalletController"
-import { InvalidWalletError } from "../errors/InvalidWalletError"
+import { InvalidNotFoundWalletError } from "../errors/InvalidNotFoundWalletError"
 
 type UpdateWalletRequest = {
   id: string,
@@ -18,7 +18,7 @@ type UpdateWalletRequest = {
 }
 
 type UpdateWalletResponse = Either<
-  | InvalidWalletError
+  | InvalidNotFoundWalletError
   | InvalidCurrencyError
   | InvalidWalletNameError
 , null>
@@ -35,7 +35,7 @@ export class UpdateWallet{
 
 
       if(!wallet){
-        return left(new InvalidWalletError())
+        return left(new InvalidNotFoundWalletError())
       }
 
       if(data.currency){

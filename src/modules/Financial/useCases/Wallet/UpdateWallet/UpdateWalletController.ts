@@ -2,7 +2,7 @@ import { Controller } from "@core/infra/Controller";
 import { clientError, conflict, created, fail, HttpResponse, notFound } from "@core/infra/HttpResponse";
 import { InvalidCurrencyError } from "@modules/Financial/domain/wallet/errors/InvalidCurrencyError";
 import { InvalidWalletNameError } from "@modules/Financial/domain/wallet/errors/InvalidWalletNameError";
-import { InvalidWalletError } from "../errors/InvalidWalletError";
+import { InvalidNotFoundWalletError } from "../errors/InvalidNotFoundWalletError";
 import { UpdateWallet } from "./UpdateWallet";
 
 type UpdateWalletControllerRequest = {
@@ -30,7 +30,7 @@ export class UpdateWalletController implements Controller {
         const error = result.value
 
         switch(error.constructor){
-          case InvalidWalletError:
+          case InvalidNotFoundWalletError:
             notFound(error)
           case InvalidCurrencyError:
             return conflict(error)

@@ -5,5 +5,6 @@ export interface ICreditCardRepository {
   delete(id: string): Promise<void>
   save(creditCard: CreditCard): Promise<void>
   findById(id: string): Promise<CreditCard>
-  findByNameWithUser(id: string, user_id: string): Promise<CreditCard>
+  findByNameWithUser(name: string, user_id: string): Promise<CreditCard>
+  findByIdWithUser(id: string, user_id: string): Promise<CreditCard>
 }
