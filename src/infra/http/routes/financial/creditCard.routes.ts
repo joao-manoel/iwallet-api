@@ -1,6 +1,6 @@
 import { adaptMiddleware } from '@core/infra/adapters/ExpressMiddlewareAdapter'
 import { adaptRoute } from '@core/infra/adapters/ExpressRouteAdapter'
-import { makeCreateCreditCardController } from '@infra/http/factories/controllers/creditCard/CreateCreditCardControllerFactory'
+import { makeCreateCreditCardController } from '@infra/http/factories/controllers/financial/creditCard/CreateCreditCardControllerFactory'
 import { makeEnsureAuthenticatedMiddleware } from '@infra/http/factories/middlewares/EnsureAuthenticateMiddleware'
 import express from 'express'
 
