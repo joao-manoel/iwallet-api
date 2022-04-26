@@ -10,6 +10,7 @@ import { Either, right } from '@core/logic/Either';
 interface ICategoryProps {
   name: Name
   type: Type
+  userId: string
 }
 
 export class Category extends Entity<ICategoryProps> {
@@ -23,6 +24,10 @@ export class Category extends Entity<ICategoryProps> {
 
   get type() {
     return this.props.type
+  }
+
+  get userId() {
+    return this.props.userId
   }
 
   set name(name: Name) {
