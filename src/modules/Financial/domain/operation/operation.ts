@@ -73,11 +73,11 @@ export class Operation extends Entity<IOperationProps>{
   }
 
   get categoryId(){
-    return this.categoryId
+    return this.props.categoryId
   }
 
   get creditCardId(){
-    return this.creditCardId
+    return this.props.creditCardId
   }
 
   set name(name: Name){

@@ -58,11 +58,11 @@ export class OperationMapper {
   static toPersistence(operation: Operation){
     return {
       id: operation.id,
-      name: operation.name,
-      type: operation.type,
-      value: operation.value,
-      paid_at: operation.paidAt,
-      is_paid: operation.isPaid,
+      name: operation.name.value,
+      type: operation.type.value,
+      value: operation.value.value,
+      paid_at: operation.paidAt.value,
+      is_paid: operation.isPaid.value,
       user_id: operation.userId,
       wallet_id: operation.walletId,
       category_id: operation.categoryId,
