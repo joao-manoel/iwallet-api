@@ -6,7 +6,7 @@ export const validTransactionType = [
   'Deposit',
   'FixedExpense',
   'VariableExpense'
-]
+] as const
 
 export type ValidTransactionType = typeof validTransactionType[number]
 

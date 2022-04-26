@@ -1,18 +1,46 @@
+import { prisma } from "@infra/prisma/client";
 import { Category } from "@modules/Financial/domain/category/category";
+import { CategoryMapper } from "@modules/Financial/mappers/CategoryMapper";
 import { ICategorysRepository } from "../ICategorysRepository";
 
 export class PrismaCategorysRepository implements ICategorysRepository{
-  create(wallet: Category): Promise<void> {
-    throw new Error("Method not implemented.");
+  async create(category: Category): Promise<void> {
+    const data = CategoryMapper.toPersistence(category)
+
+    await prisma.category.create({
+      data,
+    })
   }
-  delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  async delete(id: string): Promise<void> {
+    await prisma.category.delete({
+      where: {
+        id
+      }
+    })
   }
-  save(wallet: Category): Promise<void> {
-    throw new Error("Method not implemented.");
+
+  async save(category: Category): Promise<void> {
+    const data = CategoryMapper.toPersistence(category)
+
+    await prisma.category.update({
+      where: {
+        id: category.id
+      },
+      data
+    })
   }
-  findById(id: string): Promise<Category> {
-    throw new Error("Method not implemented.");
+
+  async findById(id: string): Promise<Category> {
+    const category = await prisma.category.findUnique({
+      where: {
+        id
+      }
+    })
+
+    if(!category) return null
+
+    return CategoryMapper.toDomain(category)
   }
 
 }
