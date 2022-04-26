@@ -1,6 +1,7 @@
+import { Entity } from '@core/domain/Entity';
+
 import { InvalidCategoryTransactionTypeError } from './errors/InvalidCategoryTransactionTypeError';
 import { InvalidCategoryNameError } from './errors/InvalidCategoryNameError';
-import { Entity } from '@core/domain/Entity';
 
 import { Name } from './name';
 import { Type } from './type';
