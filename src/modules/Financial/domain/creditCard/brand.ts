@@ -16,27 +16,27 @@ export const validBrandTypes = [
 export type ValidBrandTypes = typeof validBrandTypes[number]
 
 export class Brand {
-  private readonly type: ValidBrandTypes
+  private readonly brand: ValidBrandTypes
 
   get value(): ValidBrandTypes {
-    return this.type
+    return this.brand
   }
 
-  private constructor(type: ValidBrandTypes){
-    this.type = type
+  private constructor(brand: ValidBrandTypes){
+    this.brand = brand
   }
 
-  static validate(type: ValidBrandTypes): boolean{
-    if(!validBrandTypes.includes(type)) return false
+  static validate(brand: ValidBrandTypes): boolean{
+    if(!validBrandTypes.includes(brand)) return false
 
     return true
   }
 
-  static create(type: ValidBrandTypes): Either<InvalidCreditCardBrandError, Brand>{
-    if(!this.validate(type)){
+  static create(brand: ValidBrandTypes): Either<InvalidCreditCardBrandError, Brand>{
+    if(!this.validate(brand)){
       return left(new InvalidCreditCardBrandError())
     }
 
-    return right(new Brand(type))
+    return right(new Brand(brand))
   }
 }
