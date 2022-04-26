@@ -1,0 +1,20 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "start:dev",
+			"problemMatcher": [],
+			"label": "npm: start:dev",
+			"detail": "tsnd --respawn --transpile-only --ignore-watch node_modules -r tsconfig-paths/register src/infra/http/server.ts"
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "babel src --extensions \".ts\" --out-dir dist --copy-files"
+		}
+	]
+}
