@@ -5,4 +5,5 @@ export interface ICategorysRepository {
   delete(id: string): Promise<void>
   save(wallet: Category): Promise<void>
   findById(id: string): Promise<Category>
+  findByName(name: string): Promise<Category>
 }
