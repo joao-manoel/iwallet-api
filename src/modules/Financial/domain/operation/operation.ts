@@ -17,6 +17,7 @@ interface IOperationProps {
   type: Type
   isPaid: isPaid
   paidAt: PaidAt
+
   userId: string
   walletId: string
   categoryId: string
@@ -24,6 +25,7 @@ interface IOperationProps {
 }
 
 export class Operation extends Entity<IOperationProps>{
+
 
   private constructor(props: IOperationProps, id?: string){
     super(props, id)
@@ -74,6 +76,10 @@ export class Operation extends Entity<IOperationProps>{
     return this.categoryId
   }
 
+  get creditCardId(){
+    return this.creditCardId
+  }
+
   set name(name: Name){
     this.props.name = name
   }
@@ -100,6 +106,10 @@ export class Operation extends Entity<IOperationProps>{
 
   set walletId(id: string){
     this.props.walletId = id
+  }
+
+  set creditCardId(id: string){
+    this.creditCardId = id
   }
 
 }
